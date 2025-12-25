@@ -6,6 +6,7 @@ steps:
   inputs:
     terraformVersion: 'latest'
 - task: TerraformTask@5
+  displayName: terraform init
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -14,3 +15,16 @@ steps:
     backendAzureRmStorageAccountName: 'ravindrastg322'
     backendAzureRmContainerName: 'ravindracontainer'
     backendAzureRmKey: 'terraform.tfstate'
+- task: TerraformTask@5
+  displayName: terraform validate
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/enviorment/dev'
+- task: TerraformTask@5
+  displayName: terraform plan
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/enviorment/dev'
+    environmentServiceNameAzureRM: 'pipeservice'
