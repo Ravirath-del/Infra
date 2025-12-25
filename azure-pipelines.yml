@@ -1,0 +1,16 @@
+trigger: none
+pool: Ravindranewpipeline
+steps: 
+- task: TerraformInstaller@1
+  displayName: terraform install
+  inputs:
+    terraformVersion: 'latest'
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/enviorment/dev'
+    backendServiceArm: 'pipeservice'
+    backendAzureRmStorageAccountName: 'ravindrastg322'
+    backendAzureRmContainerName: 'ravindracontainer'
+    backendAzureRmKey: 'terraform.tfstate'
