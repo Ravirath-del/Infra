@@ -10,6 +10,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
+    commandOptions: '-upgrade=false'
     workingDirectory: '$(System.DefaultWorkingDirectory)/enviorment/dev'
     backendServiceArm: 'pipeservice'
     backendAzureRmStorageAccountName: 'ravindrastg322'
